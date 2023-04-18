@@ -3,6 +3,8 @@ import GuestLayout from "./layouts/GuestLayout";
 import Login from "./views/Login";
 import NotFound from "./views/NotFound";
 import Register from "./views/Register";
+import Dashboard from "./views/Dashboard";
+import DefaultLayout from "./layouts/DefaultLayout";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +23,16 @@ const router = createBrowserRouter([
                 path: '/register',
                 element: <Register />
             }
+        ]
+    },
+    {
+        path: '/',
+        element: <DefaultLayout />,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Dashboard />
+            },
         ]
     },
     {
