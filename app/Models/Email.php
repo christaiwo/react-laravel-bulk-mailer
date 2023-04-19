@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Email extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'email',
+        'status'
+    ];
+
+
+    public function emails()
+    {
+        return $this->belongsTo(Mail::class);
+    }
 }

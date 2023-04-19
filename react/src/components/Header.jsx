@@ -4,10 +4,18 @@ import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import classNames from 'classnames';
 import { useStateContext } from '../contexts/ContextProvider';
+import axiosClient from '../axios-client';
 
 const Header = () => {
     const today = new Date().toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric' });
     const {user, token, setUser, setToken} = useStateContext();
+
+    const handleLogout = () => { 
+        axiosClient.post('/logout').then(() => {
+            setUser(null);
+            setToken(null);
+        })
+    }
   return (
     <div className='flex flex-row items-center justify-between border-b-4 pb-4'>         
         <div className='flex items-center gap-3'>
@@ -47,7 +55,7 @@ const Header = () => {
                             </Menu.Item>
                             <Menu.Item>
                                 {({ active }) => (
-                                    <div className={classNames(active && 'bg-gray-100', 'text-gray-700 focus:bg-gray-200 cursor-pointer rounded-sm px-4 py-2')} onClick={() => navigate('/logout') }>
+                                    <div onClick={handleLogout} className={classNames(active && 'bg-gray-100', 'text-gray-700 focus:bg-gray-200 cursor-pointer rounded-sm px-4 py-2')}>
                                         Log out 
                                     </div>
                                 )}

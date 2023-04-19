@@ -2,6 +2,8 @@ import React from 'react'
 import { SuccessButton } from '../components/Button'
 
 const SendMail = () => {
+
+  
   return (
     <div className='mt-10'>
       <div className='flex flex-col justify-center items-center'>
