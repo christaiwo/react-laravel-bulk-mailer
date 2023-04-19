@@ -4,6 +4,10 @@ import {SuccessButton } from '../components/Button';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
+    const onsubmit = (ev) => {
+        ev.preventDefault();
+        alert('he')
+    } 
 
     // manage password visibility
     const [showPass, setShowPass] = useState(false);
@@ -12,8 +16,8 @@ const Register = () => {
     }
   return (
     <div>
-        <form action="">
-        <div className='flex flex-col gap-2 my-4'>
+        <form action='' onsubmit={onsubmit}>
+            <div className='flex flex-col gap-2 my-4'>
                 <label htmlFor="" className='font-semibold'>Full Name</label>
                 <input type="text" className='h-[48px] w-[400px] py-2 px-2 rounded-lg bg-transparent focus:outline-none border border-gray-400 text-2xl placeholder:text-lg ' placeholder='john doe' />
             </div>
@@ -36,7 +40,7 @@ const Register = () => {
                 </div>
             </div>
             <div className='flex flex-col gap-2 my-4'>
-                <SuccessButton test="Register" />
+                <SuccessButton text="Register" />
             </div>
             <div className='text-center'>
                 <p className='text-gray-500'>Don't have an account ? <Link to='/login' className='text-green-600'>login</Link> </p>

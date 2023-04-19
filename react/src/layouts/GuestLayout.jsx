@@ -1,7 +1,15 @@
 import React from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
+import { useStateContext } from '../contexts/ContextProvider';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const GuestLayout = () => {
+    const {user, token, setUser, } = useStateContext();
+    if (token) {
+        return <Navigate to="/dashboard" />
+    }
     const { pathname } = useLocation();
   return (
     <div className='bg-zinc-100 h-screen w-screen flex items-center justify-center'>
@@ -17,6 +25,7 @@ const GuestLayout = () => {
             </div>
             <Outlet />
         </div>
+        <ToastContainer />
     </div>
   )
 }

@@ -5,6 +5,8 @@ import NotFound from "./views/NotFound";
 import Register from "./views/Register";
 import Dashboard from "./views/Dashboard";
 import DefaultLayout from "./layouts/DefaultLayout";
+import SendMail from "./views/SendMail";
+import Mails from "./views/Mails";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
                 path: '/dashboard',
                 element: <Dashboard />
             },
+            {
+                path: '/send-mail',
+                element: <SendMail />
+            },
+            {
+                path: '/mails',
+                element: <Mails />
+            }
         ]
     },
     {
