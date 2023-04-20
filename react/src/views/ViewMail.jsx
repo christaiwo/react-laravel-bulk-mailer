@@ -1,40 +1,40 @@
 import React, { useEffect, useState } from 'react'
-
-import DataTable from 'react-data-table-component';
-import { BsPen, BsTrash } from 'react-icons/bs';
+import DataTable from 'react-data-table-component'
+import { ThreeDots } from 'react-loader-spinner'
 import axiosClient from '../axios-client';
-import { ThreeDots } from 'react-loader-spinner';
+import { useNavigate, useParams } from 'react-router-dom';
+import { BsTrash } from 'react-icons/bs';
 import {toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
 
-const Mails = () => {
+
+const ViewMail = () => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState();
-    
-    // call the getmails request on page load
-    useEffect(() => {
-        getMails();
-    },[])
+    const {id} = useParams();
+    const [mail, setMail] = useState();
 
-    // axios send request to get the data
-    const getMails = () => {
-        axiosClient.get('/mail').then(({data}) => {
-            setData(data.mails);
-            setTimeout(() => {
-                setLoading(false);
-              }, 1000);
+
+    useEffect(() => {
+        getMail();
+    }, [])
+
+    const getMail = () => {
+        axiosClient.get(`mail/${id}`).then(({data}) => {
+            setData(data);
+            setMail(data.mail);
+            setLoading(false);
         }).catch((err) => {
 
         });
     }
 
     const deleteMail = (id) => {
-        if(!window.confirm(`Are you sure you want to delete`)){
+        if(!window.confirm(`Are you sure you want to delete ${id}`)){
             return ;
         }
-        axiosClient.delete(`mail/${id}`).then(() => {
+        axiosClient.delete(`email/${id}`).then(() => {
             toast.success("deleted successfully");
-            return getMails();
+            return getMail();
         }).catch((err) => {
             return toast.error("an error occurred while deleting");
         })
@@ -43,16 +43,8 @@ const Mails = () => {
     // table headers
     const columns = [
         {
-            name: 'Subject',
-            selector: row => row.subject,
-        },
-        {
-            name: 'Total Emails',
-            selector: row => row.total,
-        },
-        {
-            name: 'Total Sent',
-            selector: row => row.sent ,
+            name: 'Email',
+            selector: row => row.email,
         },
         {
             name: 'Date',
@@ -75,9 +67,6 @@ const Mails = () => {
                     <button className="btn btn-sm btn-danger" onClick={() => deleteMail(row.id)}>
                         <BsTrash className='bg-red-600 rounded-lg py-2 px-2 w-8 h-8 text-white font-bold' />
                     </button>
-                    <Link className="btn btn-sm btn-success" to={`/view-mail/${row.id}`}>
-                        <BsPen className='bg-green-600 rounded-lg py-2 px-2 w-8 h-8 text-white font-bold' />
-                    </Link>
                 </div>
             ),
         },
@@ -86,12 +75,10 @@ const Mails = () => {
     const options = {
         responsive: true // Add the responsive option
     };
-      
-
   return (
     <div className='mt-10'>
         {loading 
-      ? <div className='flex items-center justify-center my-auto h-full'>
+        ? <div className='flex items-center justify-center my-auto h-full'>
         <ThreeDots
           height="100" 
           width="100" 
@@ -103,14 +90,17 @@ const Mails = () => {
           visible={true}
         />
       </div>
-      :<div className='flex flex-col justify-center items-center'>
-            <div className='bg-white w-full rounded-md flex flex-col shadow-sm py-2 px-4' style={{ width: '100%' }}>
-                <DataTable title="Mails"  pagination columns={columns} data={data}   options={options}/>
+      :<div className='flex flex-col gap-3 justify-center items-center'>
+            <div className='bg-white w-full rounded-md flex flex-col shadow-sm py-2 px-4 text-center'>
+                <h1 className='text-2xl'>{mail.subject}</h1>
+                <h3 className='text-sm'>{mail.message}</h3>
+            </div>
+            <div className='bg-white w-full rounded-md flex flex-col shadow-sm py-2 px-4'>
+                <DataTable title="Mails"  pagination columns={columns} data={data.emails}   options={options}/>
             </div>
       </div>}
     </div>
   )
 }
 
-
-export default Mails
+export default ViewMail

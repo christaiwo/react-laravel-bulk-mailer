@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMailRequest;
 use App\Http\Requests\UpdateMailRequest;
+use App\Models\Email;
 use App\Models\Mail;
 
 class MailController extends Controller
@@ -52,7 +53,8 @@ class MailController extends Controller
      */
     public function show(Mail $mail)
     {
-        //
+        $emails = $mail->emails;
+        return response(compact('mail', 'emails'), 200);
     }
 
     /**
@@ -69,6 +71,12 @@ class MailController extends Controller
     public function destroy(Mail $mail)
     {
         $mail->delete();
+        return response('', 200);
+    }
+
+    public function destroyEmail(Email $email)
+    {
+        $email->delete();
         return response('', 200);
     }
 }

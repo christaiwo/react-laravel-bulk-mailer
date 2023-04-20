@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/user', \App\Http\Controllers\Api\UserController::class);
     Route::apiResource('/mail', \App\Http\Controllers\Api\MailController::class);
+    Route::delete('/email/{email}', [\App\Http\Controllers\Api\MailController::class, 'destroyEmail']);
     Route::post('logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
 });
 
