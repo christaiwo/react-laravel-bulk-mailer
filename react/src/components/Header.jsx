@@ -5,6 +5,7 @@ import { Menu, Transition } from '@headlessui/react';
 import classNames from 'classnames';
 import { useStateContext } from '../contexts/ContextProvider';
 import axiosClient from '../axios-client';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     const today = new Date().toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric' });
@@ -48,9 +49,9 @@ const Header = () => {
                         <Menu.Items className="origin-top-right z-10 absolute right-0 mt-2 w-48 rounded-sm shadow-md p-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <Menu.Item>
                                 {({ active }) => (
-                                    <div className={classNames(active && 'bg-gray-100', 'text-gray-700 focus:bg-gray-200 cursor-pointer rounded-sm px-4 py-2')} onClick={() => navigate('/profile') }>
+                                    <Link to="/profile" className={classNames(active && 'bg-gray-100', 'text-gray-700 focus:bg-gray-200 cursor-pointer rounded-sm px-4 py-2')} onClick={() => navigate('/profile') }>
                                         Your Profile 
-                                    </div>
+                                    </Link>
                                 )}
                             </Menu.Item>
                             <Menu.Item>

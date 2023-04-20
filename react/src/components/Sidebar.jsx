@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import {MdOutlineSpaceDashboard} from 'react-icons/md'
 import {RiMailSendLine} from 'react-icons/ri'
-import { AiOutlineMail } from 'react-icons/ai'
+import { AiOutlineMail, AiOutlineUser } from 'react-icons/ai'
 
 const Sidebar = () => {
   return (
@@ -23,6 +23,10 @@ const Sidebar = () => {
         <Link to="/mails" className='flex flex-row gap-2 hover:bg-neutral-200 hover:text-black rounded-md text-white my-4 p-2'>
             <AiOutlineMail className='w-6 h-6' />
             <h1>Mails</h1>
+        </Link>
+        <Link to="/profile" className='flex flex-row gap-2 hover:bg-neutral-200 hover:text-black rounded-md text-white my-4 p-2'>
+            <AiOutlineUser className='w-6 h-6' />
+            <h1>Profile</h1>
         </Link>
     </div>
   )

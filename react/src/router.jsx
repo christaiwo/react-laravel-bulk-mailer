@@ -8,6 +8,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import SendMail from "./views/SendMail";
 import Mails from "./views/Mails";
 import ViewMail from "./views/ViewMail";
+import Profile from "./views/Profile";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <Dashboard />
+            },
+            {
+                path: '/profile',
+                element: <Profile />
             },
             {
                 path: '/send-mail',
