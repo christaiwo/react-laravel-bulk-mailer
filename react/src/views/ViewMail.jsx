@@ -47,8 +47,8 @@ const ViewMail = () => {
             selector: row => row.email,
         },
         {
-            name: 'Date',
-            selector: row => row.created_at,
+            name: 'Sent',
+            selector: row => row.updated_at,
         },
         {
             name: 'Status',
