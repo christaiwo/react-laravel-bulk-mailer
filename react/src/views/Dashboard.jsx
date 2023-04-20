@@ -36,7 +36,7 @@ const Dashboard = () => {
           height="100" 
           width="100" 
           radius="9"
-          color="#4fa94d" 
+          color="#696261" 
           ariaLabel="three-dots-loading"
           wrapperStyle={{}}
           wrapperClassName=""

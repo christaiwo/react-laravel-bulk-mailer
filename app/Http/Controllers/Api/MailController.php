@@ -14,7 +14,9 @@ class MailController extends Controller
      */
     public function index()
     {
-        //
+        $mails = Mail::all();
+
+        return response(compact('mails'), 200);
     }
 
     /**
@@ -22,7 +24,27 @@ class MailController extends Controller
      */
     public function store(StoreMailRequest $request)
     {
-        //
+        $data = Mail::create([
+            'subject' => $request->subject,
+            'message' => $request->message,
+        ]);
+
+        if($data){
+            $emails = explode(',', $request->email);
+            $count = 0;
+            foreach ($emails as $email) {
+                $data->emails()->create([
+                    'email' => $email,
+                ]);
+                $count++;
+            }
+
+            $data->update([
+                'total' => $count,
+            ]);
+        }
+
+        return response('', 200);
     }
 
     /**
@@ -46,6 +68,7 @@ class MailController extends Controller
      */
     public function destroy(Mail $mail)
     {
-        //
+        $mail->delete();
+        return response('', 200);
     }
 }

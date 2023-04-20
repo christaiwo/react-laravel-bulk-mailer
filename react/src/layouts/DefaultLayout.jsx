@@ -6,6 +6,8 @@ import Sidebar from '../components/Sidebar';
 import { useStateContext } from '../contexts/ContextProvider';
 import axiosClient from '../axios-client';
 import { useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -45,6 +47,7 @@ const DefaultLayout = () => {
 
             
         </div>
+        <ToastContainer />
     </div>
   )
 }
