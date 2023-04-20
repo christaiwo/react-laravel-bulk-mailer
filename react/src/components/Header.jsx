@@ -6,8 +6,10 @@ import classNames from 'classnames';
 import { useStateContext } from '../contexts/ContextProvider';
 import axiosClient from '../axios-client';
 import { Link } from 'react-router-dom';
+import {HiOutlineMenuAlt2} from 'react-icons/hi';
+import { AiOutlineGift, AiOutlineMenu } from 'react-icons/ai';
 
-const Header = () => {
+const Header = ({ nav, handleClick }) => {
     const today = new Date().toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric' });
     const {user, token, setUser, setToken} = useStateContext();
 
@@ -18,7 +20,10 @@ const Header = () => {
         })
     }
   return (
-    <div className='flex flex-row items-center justify-between border-b-4 pb-4'>         
+    <div className='flex flex-row items-center justify-between border-b-4 pb-4'>    
+        <div className='lg:hidden'>
+            {!nav ? <HiOutlineMenuAlt2 className="w-8 h-6" onClick={handleClick}  /> : <AiOutlineMenu className="w-8 h-6" onClick={handleClick}  /> }
+        </div>  
         <div className='flex items-center gap-3'>
             <p className='text-2xl font-bold '>Hello {user.name} </p>
             {`>>`} 

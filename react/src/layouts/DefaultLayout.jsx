@@ -13,12 +13,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const DefaultLayout = () => {
+  const [nav, setNav] = useState(false);
+  const handleClick = () => setNav(!nav);
+  const handleClose = () => setNav(!nav);
+
   const {user, token, setUser, setToken } = useStateContext();
   if (!token) {
     return <Navigate to="/login" />
   }
-
-
 
   useEffect(() => {
     axiosClient.get('/user').then(({data}) => {
@@ -37,11 +39,11 @@ const DefaultLayout = () => {
         <div className="flex flex-row relative">
 
             {/* Sidebar */}
-            <Sidebar />
-
+            <Sidebar nav={nav} handleClick={handleClick}   />
+            
             {/* mainPage */}
             <div className='flex-1 lg:mt-5 mt-3 px-2'>
-                <Header/>
+                <Header nav={nav} handleClick={handleClick}/>
                 <Outlet/>
             </div>
 
