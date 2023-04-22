@@ -63,5 +63,16 @@ To install and run the application, please follow the steps below:
 
 Now you should be able to access the website at http://localhost:8000.
 
+
+## Screenshots
+![1](./screenshot/1.png)
+![1](./screenshot/2.png)
+![1](./screenshot/3.png)
+![1](./screenshot/4.png)
+![1](./screenshot/5.png)
+![1](./screenshot/6.png)
+![1](./screenshot/7.png)
+![1](./screenshot/8.png)
+
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
