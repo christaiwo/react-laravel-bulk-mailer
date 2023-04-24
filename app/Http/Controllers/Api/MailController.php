@@ -71,12 +71,12 @@ class MailController extends Controller
     public function destroy(Mail $mail)
     {
         $mail->delete();
-        return response('', 200);
+        return response('', 204);
     }
 
     public function destroyEmail(Email $email)
     {
         $email->delete();
-        return response('', 200);
+        return response('', 204);
     }
 }
